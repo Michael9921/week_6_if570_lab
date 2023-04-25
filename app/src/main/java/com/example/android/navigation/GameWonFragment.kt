@@ -43,6 +43,7 @@ class GameWonFragment : Fragment() {
 
         val args = GameWonFragmentArgs.fromBundle(requireArguments())
         Toast.makeText(context, "NumCorrect: ${args.numCorrect}, NumQuestions: ${args.numQuestions}", Toast.LENGTH_LONG).show()
+
         setHasOptionsMenu(true)
 
         return binding.root
@@ -69,6 +70,14 @@ class GameWonFragment : Fragment() {
         if(getShareIntent().resolveActivity(requireActivity().packageManager)==null){
             menu.findItem(R.id.share).isVisible = false
         }
+    }
+
+    // Sharing from the Menu
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.share -> shareSuccess()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 
